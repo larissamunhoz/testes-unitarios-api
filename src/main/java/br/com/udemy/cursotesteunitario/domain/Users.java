@@ -1,4 +1,4 @@
-package br.com.udemy.cursoTesteUnitario.domain;
+package br.com.udemy.cursotesteunitario.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,7 +1,7 @@
-package br.com.udemy.cursoTesteUnitario.resources;
+package br.com.udemy.cursotesteunitario.resources;
 
-import br.com.udemy.cursoTesteUnitario.domain.User;
-import br.com.udemy.cursoTesteUnitario.services.UserService;
+import br.com.udemy.cursotesteunitario.domain.Users;
+import br.com.udemy.cursotesteunitario.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ public class UserResource {
     private UserService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> findById(@PathVariable Integer id) {
+    public ResponseEntity<Users> findById(@PathVariable Integer id) {
         return ResponseEntity.ok().body(service.findById(id));
     }
 }
