@@ -4,6 +4,7 @@ import br.com.udemy.cursotesteunitario.domain.Users;
 import br.com.udemy.cursotesteunitario.domain.dto.UserDTO;
 import br.com.udemy.cursotesteunitario.repositories.UserRepository;
 import br.com.udemy.cursotesteunitario.services.UserService;
+import br.com.udemy.cursotesteunitario.services.exceptions.DataIntegratyViolationException;
 import br.com.udemy.cursotesteunitario.services.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Users create(UserDTO obj) {
+        findByEmail(obj);
         return repository.save(mapper.map(obj, Users.class));
     }
 
+    private void findByEmail(UserDTO obj) {
+        Optional<Users> user =  repository.findByEmail(obj.getEmail());
+        if(user.isPresent()) {
+            throw new DataIntegratyViolationException("e-mail já cadatrado no sistema");
+        }
+    }
 
 }
