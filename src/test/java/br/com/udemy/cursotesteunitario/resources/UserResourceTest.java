@@ -40,8 +40,8 @@ class UserResourceTest {
     @Mock
     private ModelMapper mapper;
 
-    private Users user;
-    private UserDTO dto;
+    private Users user = new Users();
+    private UserDTO dto = new UserDTO();
     private Optional<Users> optionalUser;
 
     @BeforeEach
