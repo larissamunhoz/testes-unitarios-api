@@ -1,4 +1,4 @@
-package br.com.udemy.cursoTesteUnitario;
+package br.com.udemy.cursotesteunitario;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
