@@ -1,5 +1,6 @@
 package br.com.udemy.cursotesteunitario.resources.exceptions;
 
+import br.com.udemy.cursotesteunitario.services.exceptions.DataIntegrityViolationException;
 import br.com.udemy.cursotesteunitario.services.exceptions.ObjectNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,6 @@ class ResourceExceptionHandlerTest {
 
     @Test
     void WhenObjectNotFoundThenReturnAResponseEntity() {
-
         ResponseEntity<StandardError> response = exceptionHandler
                 .objectNotFound(
                         new ObjectNotFoundException("Objeto não encontrado"),
@@ -42,6 +42,18 @@ class ResourceExceptionHandlerTest {
     }
 
     @Test
-    void dataIntegratyViolationException() {
+    void dataIntegrityViolationException() {
+        ResponseEntity<StandardError> response = exceptionHandler
+                .dataIntegrityViolationException(
+                        new DataIntegrityViolationException("e-mail ja cadastrado"),
+                        new MockHttpServletRequest());
+
+        assertNotNull(response);
+        assertNotNull(response.getBody());
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals(ResponseEntity.class, response.getClass());
+        assertEquals(StandardError.class, response.getBody().getClass());
+        assertEquals("e-mail ja cadastrado", response.getBody().getError());
+        assertEquals(400, response.getBody().getStatus());
     }
 }
